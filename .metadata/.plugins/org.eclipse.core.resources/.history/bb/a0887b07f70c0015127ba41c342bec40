@@ -1,0 +1,4 @@
+alert("Javascript Works!");
+var about = {
+	
+};

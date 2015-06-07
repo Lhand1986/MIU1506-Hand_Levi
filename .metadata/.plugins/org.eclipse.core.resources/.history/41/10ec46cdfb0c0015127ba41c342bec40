@@ -1,0 +1,5 @@
+var dataLoad = loadFile.aboutCall;
+
+for(var i=0, j=dataLoad.length; i<j; i++){
+	console.log(i);
+}

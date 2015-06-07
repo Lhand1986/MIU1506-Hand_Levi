@@ -1,0 +1,6 @@
+var dataLoad = loadFile.aboutCall;
+
+
+for(var i=0, j=dataLoad.questions.length; i<j; i++){
+	console.log(i);
+}
