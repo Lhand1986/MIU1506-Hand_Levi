@@ -1,0 +1,50 @@
+//Initialize JSON object
+var about = {
+	"info": [
+	{
+		"Question": "What is your name?",
+		"Answer": "Levi Hand"
+	},
+	{
+		"Question": "What is your chat user name, including the host?",
+		"Answer": "On AIM, it's lhand1986@yahoo.com"
+	},
+	{
+		"Question": "In which time zone do you reside?",
+		"Answer": "Pacific"
+	},
+	{
+		"Question": "Why are you in the Mobile Development program?",
+		"Answer": "I've always wanted to program for different technologies."
+	},
+	{
+		"Question": "How comfortable are you with Javascript?",
+		"Answer": "Relatively comfortable with what we have learned so far."
+	},
+	{
+		"Question": "How comfortable are you with Titanium?",
+		"Answer": "Also relatively comfortable. This program should be a good refresher."
+	},
+	{
+		"Question": "What is your favorite TV show?",
+		"Answer": "Doctor Who"
+	},
+	{
+		"Question": "Who is your favorite author?",
+		"Answer": "Robert Jordan"
+	},
+	{
+		"Question": "What is your favorite book?",
+		"Answer": "The Eye of the World"
+	},
+	{
+		"Question": "What kind of work do you do?",
+		"Answer": "I work in the labor department of a steel mill."
+	},
+	{
+		"Question": "What is your favorite sport?",
+		"Answer": "Dancesport"
+	}
+	]
+};
+exports.aboutCall = about;
