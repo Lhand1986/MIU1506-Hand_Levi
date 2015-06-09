@@ -1,18 +1,11 @@
 //Create main window
 var mainWin = Ti.UI.createWindow({
-	backgroundColor: "#333333",
+	backgroundColor: "#808080",
 	title: "About Me"
 });
 
-//Create a navigation window protocol
-
-var navWin = Ti.UI.iOS.createNavigationWindow({
-	//Assign the mainWin window to the nav window
-	window: mainWin
-});
-
-//Open the nav window
-navWin.open();
+//Open the main window
+mainWin.open();
 
 //Open subsequent .js file
 
