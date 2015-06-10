@@ -1,7 +1,7 @@
 //Create main window
 var mainWin = Ti.UI.createWindow({
 	//Set the background color for the window
-	backgroundColor: "#7b7277",
+	backgroundColor: "#999999",
 });
 
 //Open the main window

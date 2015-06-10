@@ -21,7 +21,7 @@ var border = Ti.UI.createView({
 //Create a view for the next button
 var nextButtonView = Ti.UI.createView({
 	//Assign a background color
-	backgroundColor: "#987A8B",
+	backgroundColor: "#d9c1f2",
 	//Assign an ID value so it can be recognized by event propagation
 	id: "next",
 	//Set the height
@@ -29,7 +29,7 @@ var nextButtonView = Ti.UI.createView({
 	//Set the distance from the right side of the screen in pixels
 	right: 20,
 	//Set the distance from the bottom in pixels
-	bottom: 150,
+	bottom: 100,
 	//Set the distance from the left side of the screen as a percentage
 	left: "60%"
 });
@@ -37,7 +37,7 @@ var nextButtonView = Ti.UI.createView({
 //Create a view for the previous button
 var prevButtonView = Ti.UI.createView({
 	//Assign a background color
-	backgroundColor: "#987A8B",
+	backgroundColor: "#d9c1f2",
 	//Assign an ID value so it can be recognized by event propagation
 	id: "prev",
 	//Set the height
@@ -45,7 +45,7 @@ var prevButtonView = Ti.UI.createView({
 	//Set the distance from the left in pixels
 	left: 20,
 	//Set the distance from the bottom in pixels
-	bottom: 150,
+	bottom: 100,
 	//Set the distance from the right as a percentage
 	right: "60%"
 });
@@ -53,7 +53,7 @@ var prevButtonView = Ti.UI.createView({
 //Create a view for the question area
 var questionView = Ti.UI.createView({
 	//Assign a background color
-	backgroundColor: "#6E6269",
+	backgroundColor: "#998e8e",
 	//Set the height of the view
 	height: 150,
 	//Set the top of the view so that if the border height is adjusted, it will maintain the same distance
@@ -67,7 +67,7 @@ var questionView = Ti.UI.createView({
 //Create a view for the answer area
 var answerView = Ti.UI.createView({
 	//Assign a background color
-	backgroundColor: "#6E6269",
+	backgroundColor: "#e5e5e5",
 	//Set the top of the view so if the border height and the questionView height is adjusted, it will maintain the same distance
 	top: border.height + questionView.height + 30,
 	//Set the height to be the same as the question view
@@ -81,7 +81,7 @@ var answerView = Ti.UI.createView({
 //Create a label for the next button text area
 var nextButtonText = Ti.UI.createLabel({
 	//Assign a text color
-	color: "#403A3D",
+	color: "#404040",
 	//Set the font styling
 	font: {fontSize: 15, fontFamily: "Helvetica"},
 	//Assign an id to the label so it can be identified for event propagation
@@ -95,7 +95,7 @@ var nextButtonText = Ti.UI.createLabel({
 //Create a label for the next button text area
 var prevButtonText = Ti.UI.createLabel({
 	//Assign a text color
-	color: "#403A3D",
+	color: "#fff",
 	//Set the font styling
 	font: {fontSize: 15, fontFamily: "Helvetica"},
 	//Assign an id to the label so it can be identified for event propagation
@@ -109,7 +109,7 @@ var prevButtonText = Ti.UI.createLabel({
 //Create a label for the question text area
 var questionText = Ti.UI.createLabel({
 	//Set the text color
-	color: "#D3C6C6",
+	color: "#56454f",
 	//Set the font styling
 	font: {fontSize: 15, fontFamily: "Helvetica"},
 	//Align the text to the center of the object it is displayed in
@@ -121,7 +121,7 @@ var questionText = Ti.UI.createLabel({
 //Create a label for the answer text area
 var answerText = Ti.UI.createLabel({
 	//Set the text color
-	color: "#D3C6C6",
+	color: "#000",
 	//Set the font styling
 	font: {fontSize: 15, fontFamily: "Helvetica"},
 	//Align the text to the center of the object it is displayed in

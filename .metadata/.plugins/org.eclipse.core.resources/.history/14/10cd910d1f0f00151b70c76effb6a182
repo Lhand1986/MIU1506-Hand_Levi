@@ -109,7 +109,7 @@ var prevButtonText = Ti.UI.createLabel({
 //Create a label for the question text area
 var questionText = Ti.UI.createLabel({
 	//Set the text color
-	color: "#D3C6C6",
+	color: "#998e8e",
 	//Set the font styling
 	font: {fontSize: 15, fontFamily: "Helvetica"},
 	//Align the text to the center of the object it is displayed in
@@ -121,7 +121,7 @@ var questionText = Ti.UI.createLabel({
 //Create a label for the answer text area
 var answerText = Ti.UI.createLabel({
 	//Set the text color
-	color: "#D3C6C6",
+	color: "#998e8e",
 	//Set the font styling
 	font: {fontSize: 15, fontFamily: "Helvetica"},
 	//Align the text to the center of the object it is displayed in

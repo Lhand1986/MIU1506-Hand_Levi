@@ -1,6 +1,5 @@
 //Initialize JSON object
 var about = {
-	//Assign an arry within the JSON object
 	"info": [
 	{
 		"question": "What is your name?",
@@ -48,5 +47,4 @@ var about = {
 	}
 	]
 };
-//Export the JSON object so it is globally available
 exports.aboutCall = about;
