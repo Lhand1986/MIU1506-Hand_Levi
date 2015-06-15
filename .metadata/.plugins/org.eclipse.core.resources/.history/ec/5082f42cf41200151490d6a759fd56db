@@ -1,0 +1,8 @@
+var mainWin = Ti.UI.createWindow({
+	backgroundColor = "#FFF"
+});
+
+mainWin.open();
+
+var loadLogic = require("logic");
+var loadJSON = require("JSON");
