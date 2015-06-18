@@ -1,0 +1,168 @@
+//Load global JSON data into local variable for ease of use
+var games = loadJSON.gamesCall;
+
+var imagesFolder = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, "images");
+
+var imageFiles = imagesFolder.getDirectoryListing();
+
+console.log(imageFiles);
+
+/*console.log(games.gamesList.gameInfo.length);
+console.log(games.gamesList.gameInformer.length);
+//console.log(games.gamesList.gameInfo[].title);
+*/
+
+//Creating a function to be open a new window and utilize JSON data during event propagation
+var getDetail = function(dataSource){
+	
+	var gameWindow = Ti.UI.createWindow({
+	backgroundColor: "#808080",
+	title: dataSource.title
+	});
+	
+	var imageContainer = Ti.UI.createView({
+		top: 20,
+		height: 210,
+		width: 375
+	});
+	
+	var gamesContainer = Ti.UI.createScrollView({
+		top: imageContainer.top + imageContainer.height + 15,
+		showVerticalScrollIndicator: true,
+		backgroundColor: "#ffffff",
+		layout: "vertical",
+		bottom: 20
+	});
+	
+	var image = Ti.UI.createImageView({
+		image: "images/" + dataSource.image,
+		width: 375,
+		height: 210
+	});
+	
+	var titleLabel = Ti.UI.createLabel({
+		text: "Game Title: " + dataSource.title,
+		top: 20,
+		left: 20
+	});
+	
+	var genreLabel = Ti.UI.createLabel({
+		text: "Genre: " + dataSource.genre,
+		top: titleLabel.top,
+		left: 20
+	});
+	
+	var platformLabel = Ti.UI.createLabel({
+		text: "Platform: " + dataSource.platform,
+		top: genreLabel.top,
+		left: 20
+	});
+	
+	var playersLabel = Ti.UI.createLabel({
+		text: "Players: " + dataSource.players,
+		top: platformLabel.top,
+		left: 20
+	});
+
+	var releaseDateLabel = Ti.UI.createLabel({
+		text: "Release Date: " + dataSource.releaseDate,
+		top: playersLabel.top,
+		left: 20
+	});
+	
+	var synopsisLabel = Ti.UI.createLabel({
+		text: "Synopsis: " + dataSource.synopsis,
+		top: releaseDateLabel.top,
+		left: 20
+	});
+	
+	var ratingLabel = Ti.UI.createLabel({
+		text: "Rating: " + dataSource.rating,
+		top: synopsisLabel.top,
+		left: 20
+	});
+	
+	var conceptLabel = Ti.UI.createLabel({
+		text: "Concept: " + dataSource.concept,
+		top: ratingLabel.top,
+		left: 20
+	});
+	
+	var graphicsLabel = Ti.UI.createLabel({
+		text: "Graphics: " + dataSource.graphics,
+		top: conceptLabel.top,
+		left: 20
+	});
+	
+	var soundLabel = Ti.UI.createLabel({
+		text: "Sound: " + dataSource.sound,
+		top: graphicsLabel.top,
+		left: 20
+	});
+	
+	var playabilityLabel = Ti.UI.createLabel({
+		text: "Playability: " + dataSource.playability,
+		top: soundLabel.top,
+		left: 20
+	});
+	
+	var entertainmentLabel = Ti.UI.createLabel({
+		text: "Entertainment: " + dataSource.entertainment,
+		top: playabilityLabel.top,
+		left: 20
+	});
+	
+	var replayLabel = Ti.UI.createLabel({
+		text: "Replay: " + dataSource.replay,
+		top: entertainmentLabel.top,
+		left: 20
+	});
+	imageContainer.add(image);
+	gamesContainer.add(titleLabel, genreLabel, platformLabel, playersLabel, releaseDateLabel, synopsisLabel, ratingLabel, conceptLabel, graphicsLabel, soundLabel, playabilityLabel, entertainmentLabel, replayLabel);
+	gameWindow.add(imageContainer, gamesContainer);
+	//Open the detailWindow in the navWindow when the function is called
+	navWin.openWindow(gameWindow);
+};
+
+var gamesView = Ti.UI.createView({
+	top:0
+});
+
+var gamesTable = Ti.UI.createTableViewSection({
+	headerTitle: "Games",
+});
+
+var gamesView = Ti.UI.createTableView({
+	style: Ti.UI.iPhone.TableViewStyle.GROUPED
+});
+
+for(var i=0, j=games.gamesList.gameInfo.length; i<j; i++){
+	var theRow = Ti.UI.createTableViewRow({
+		title: games.gamesList.gameInfo[i].title,
+		genre: games.gamesList.gameInfo[i].genre,
+		platform: games.gamesList.gameInfo[i].platform,
+		players: games.gamesList.gameInfo[i].players,
+		releaseDate: games.gamesList.gameInfo[i].releaseDate,
+		synopsis: games.gamesList.gameInfo[i].synopsis,
+		image: games.gamesList.gameInfo[i].image,
+		rating: games.gamesList.gameInfo[i].rating,
+		concept: games.gamesList.gameInfo[i].concept,
+		graphics: games.gamesList.gameInfo[i].graphics,
+		sound: games.gamesList.gameInfo[i].sound,
+		playability: games.gamesList.gameInfo[i].playability,
+		entertainment: games.gamesList.gameInfo[i].entertainment,
+		replay: games.gamesList.gameInfo[i].replay,
+		hasChild: true
+	});
+	
+	gamesTable.add(theRow);
+}
+
+gamesView.addEventListener("click", function(event){
+	getDetail(event.source);
+});
+
+var gamesSection = [gamesTable];
+
+gamesView.setData(gamesSection);
+mainWin.add(gamesView);

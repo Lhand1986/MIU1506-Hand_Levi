@@ -1,0 +1,135 @@
+//Load global JSON data into local variable for ease of use
+var games = loadJSON.gamesCall;
+
+/*console.log(games.gamesList.gameInfo.length);
+console.log(games.gamesList.gameInformer.length);
+//console.log(games.gamesList.gameInfo[].title);
+*/
+
+var gameWindow = Ti.UI.createWindow({
+	title: "Placeholder",
+	backgroundColor: "#808080"
+});
+
+var gamesContainer = Ti.UI.createScrollView({
+	top: 0,
+	showVerticleScrollIndicator: true,
+	backgroundColor: "#808080"
+});
+
+var image = Ti.UI.createImageView({
+	image: "",
+	width: 375,
+	height: 210,
+	top: 20
+});
+
+var titleLabel = Ti.UI.createLabel({
+	text: "title",
+	top: image.top + image.height + 20
+});
+
+var genreLabel = Ti.UI.createLabel({
+	text: "genre",
+	top: titleLabel.top + 20
+});
+
+var platformLabel = Ti.UI.createLabel({
+	text: "platform",
+	top: genreLabel.top + 20
+});
+
+var playersLabel = Ti.UI.createLabel({
+	text: "players",
+	top: platformLabel.top + 20
+});
+
+var releaseDateLabel = Ti.UI.createLabel({
+	text: "release date",
+	top: titleLabel.top + 20
+});
+
+var synopsisLabel = Ti.UI.createLabel({
+	text: "synopsis",
+	top: releaseDateLabel.top + 20
+});
+
+var ratingLabel = Ti.UI.createLabel({
+	text: "rating",
+	top: synopsisLabel.top + 20
+});
+
+var conceptLabel = Ti.UI.createLabel({
+	text: "concept",
+	top: ratingLabel.top + 20
+});
+
+var graphicsLabel = Ti.UI.createLabel({
+	text: "graphics",
+	top: conceptLabel.top + 20
+});
+
+var soundLabel = Ti.UI.createLabel({
+	text: "sound",
+	top: graphicsLabel.top + 20
+});
+
+var playabilityLabel = Ti.UI.createLabel({
+	text: "playability",
+	top: soundLabel.top + 20
+});
+
+var entertainmentLabel = Ti.UI.createLabel({
+	text: "entertainment",
+	top: playabilityLabel.top + 20
+});
+
+var replayLabel = Ti.UI.createLabel({
+	text: "replay",
+	top: entertainmentLabel.top + 20
+});
+
+var gamesTable = Ti.UI.createTableViewSection({
+	headerTitle: "Games",
+	top: replayLabel.top + 400
+});
+
+var gamesView = Ti.UI.createTableView({
+	style: Ti.UI.iPhone.TableViewStyle.GROUPED
+});
+
+for(var i=0, j=games.gamesList.gameInfo.length; i<j; i++){
+	var theRow = Ti.UI.createTableViewRow({
+		title: games.gamesList.gameInfo[i].title,
+		genre: games.gamesList.gameInfo[i].genre,
+		platform: games.gamesList.gameInfo[i].platform,
+		players: games.gamesList.gameInfo[i].players,
+		releaseDate: games.gamesList.gameInfo[i].releaseDate,
+		synopsis: games.gamesList.gameInfo[i].synopsis,
+		image: games.gamesList.gameInfo[i].image,
+		rating: games.gamesList.gameInfo[i].rating,
+		concept: games.gamesList.gameInfo[i].concept,
+		graphics: games.gamesList.gameInfo[i].graphics,
+		sound: games.gamesList.gameInfo[i].sound,
+		playability: games.gamesList.gameInfo[i].playability,
+		entertainment: games.gamesList.gameInfo[i].entertainment,
+		replay: games.gamesList.gameInfo[i].replay,
+		hasChild: true
+	});
+	
+	gamesTable.add(theRow);
+}
+
+var openPage = function(dataSource){
+	gameWindow.open();
+};
+
+gamesView.addEventListener("click", function(event){
+	openPage(event.source);
+	console.log(event.source.title, event.source.genre, event.source.platform, event.source.players, event.source.releaseDate);
+});
+var gamesSection = [gamesTable];
+gamesView.setData(gamesSection);
+gamesContainer.add(image, titleLabel, genreLabel, platformLabel, playersLabel, releaseDateLabel, synopsisLabel, ratingLabel, conceptLabel, graphicsLabel, soundLabel, playabilityLabel, entertainmentLabel, replayLabel);
+gameWindow.add(gamesContainer);
+navWin.add(gamesView);

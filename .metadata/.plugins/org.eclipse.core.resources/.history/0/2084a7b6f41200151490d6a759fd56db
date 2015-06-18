@@ -1,0 +1,13 @@
+var mainWin = Ti.UI.createWindow({
+	backgroundColor: "#FFF",
+	title: "Blerch"
+});
+
+var navWin = Ti.UI.createNavigationWindow({
+	window: mainWin
+});
+
+navWin.open();
+
+var loadLogic = require("logic");
+var loadJSON = require("JSON");
