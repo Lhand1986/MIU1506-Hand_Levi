@@ -1,0 +1,23 @@
+var aboutWin = Ti.UI.createWindow({
+	backgroundColor: "fffff5",
+	title: "About"
+});
+
+var aboutJSON = {
+	"categories": [{
+		"program": "This program is designed to calculate the number of bars needing to be merged between heats at the Gerdau rebar mill in Rancho Cucamonga, CA.",
+		"author": "The author of this program is named Levi Hand and is a student at Full Sail University in the process of obtaining his Bachelor's of Science in Mobile Development."
+	}]
+};
+
+var programLabel = Ti.UI.createLabel({
+	top: 20,
+	left: 20,
+	right: 20,
+	font: {fontSize: 16, fontFamily: "Times New Roman"},
+	text: aboutJSON.categories[0].program
+});
+
+aboutWin.add(programLabel);
+
+exports.aboutCall = aboutWin;

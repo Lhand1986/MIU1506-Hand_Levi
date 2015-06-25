@@ -1,0 +1,12 @@
+var mainWin = Ti.UI.createWindow({
+	backgroundColor: "#808080",
+	title: "Merge Calculator"
+});
+
+var navWin = Ti.UI.createNavigationWindow({
+	window: mainWin
+});
+
+navWin.open();
+
+var loadCalc = require("calc");

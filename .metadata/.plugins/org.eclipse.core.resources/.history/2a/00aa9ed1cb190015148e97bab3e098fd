@@ -1,0 +1,36 @@
+var launchWin = Ti.UI.createWindow({
+	backgroundColor: "#fffff0",
+	title: "Launch"
+});
+
+var launchView = Ti.UI.createView({
+	top: 20,
+});
+
+
+var launchViewSection = Ti.UI.createTableViewSection({
+	headerTitle: "Launch Sections"
+});
+
+var calcRow = Ti.UI.createTableViewRow({
+	title: "Merge Calculator",
+	hasChild: true
+});
+
+var aboutRow = Ti.UI.createTableViewRow({
+	title: "About this program",
+	hasChild: true
+});
+
+var launchTable = Ti.UI.createTableView({
+	data: [calcRow, aboutRow]
+});
+
+//launchViewSection.add(calcRow, aboutRow);
+
+//var launchSection = [launchViewSection];
+
+//launchTable.setData(launchSection);
+launchWin.add(launchTable);
+
+exports.launchCall = launchWin;

@@ -1,0 +1,289 @@
+//Create window for calculator
+var calcWin = Ti.UI.createWindow({
+	backgroundColor: "#fffff5",
+	title: "Gerdau Calculator"
+});
+
+//Create a window for the output
+var outputWin = Ti.UI.createWindow({
+	backgroundColor: "#fffff5",
+	title: "Merge Numbers"
+});
+
+var outputLabel = Ti.UI.createLabel({
+	top: 20,
+	left: 20,
+	right: 20,
+	font: {fontSize: 18, fontFamily: "Times New Roman"}
+});
+
+//Create a scroll view so the user can scroll through the information on screen
+var calcContainer = Ti.UI.createScrollView({
+	top: 0,
+	showVerticalScrollIndicator: true,
+	backgroundColor: "#fffff5",
+	layout: "vertical"
+});
+
+//Create a label for the instructions at the top of the page
+var instructionHeader = Ti.UI.createLabel({
+	text: "This form will calculate how many bars will need to be merged from the next heat. Please fill out the form completely.",
+	top: 15,
+	left: 15,
+	right: 15,
+	font: {fontSize: 14, fontFamily: "Times New Roman"},
+	color: "grey"
+});
+
+//Create a label for the bundle pieces question
+var bundlePieces = Ti.UI.createLabel({
+	text: "How many pieces are in each bundle?",
+	top: 20,
+	left: 20,
+	right: 20
+});
+
+//Create input field for the bundle pieces
+var bundlePiecesInput = Ti.UI.createTextField({
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	hintText: "Enter a number",
+	top: 5,
+	left: bundlePieces.left,
+	width: 250
+});
+
+//Create a label for the drops question field
+var dropsInRun = Ti.UI.createLabel({
+	text: "How many drops are in each run?",
+	top: bundlePieces.top,
+	left: bundlePieces.left,
+	right: bundlePieces.right
+});
+
+//Create input field for the drops
+var dropsRunInput = Ti.UI.createTextField({
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	hintText: "Enter a number",
+	top: 5,
+	left: dropsInRun.left,
+	width: 250
+});
+
+//Create a label for the bars per drop question field
+var barsPerDrop = Ti.UI.createLabel({
+	text: "How many bars are in each drop?",
+	top: dropsInRun.top,
+	left: dropsInRun.left,
+	right: dropsInRun.right
+});
+
+//Create input field for the bars
+var barsDropInput = Ti.UI.createTextField({
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	hintText: "Enter a number",
+	top: 5,
+	left: barsPerDrop.left,
+	width: 250
+});
+
+//Create a label for the drops in heat question field
+var barsInHeat = Ti.UI.createLabel({
+	text: "How many drops are left in the current heat?",
+	top: barsPerDrop.top,
+	left: barsPerDrop.left,
+	right: barsPerDrop.right
+});
+
+//Create input field for the heat
+var barsHeatInput = Ti.UI.createTextField({
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	hintText: "Enter a number",
+	top: 5,
+	left: barsInHeat.left,
+	width: 250
+});
+
+//Create a label for the 30 foot bar toggle
+var thirtiesLabel = Ti.UI.createLabel({
+	text: "Are you running 30 foot bar? Click for yes or no.",
+	top: barsInHeat.top,
+	left: barsInHeat.left,
+	right: barsInHeat.right
+});
+
+//Create a switch to select for 30 foot bar
+var thirtiesButton = Ti.UI.createButton({
+	top: 10,
+	style: Ti.UI.iPhone.SystemButtonStyle.BORDERED,
+	left: thirtiesLabel.left,
+	width: 50,
+	height: 30,
+	title: "Yes",
+	borderColor: "blue"
+});
+
+var bundleCuts = Ti.UI.createLabel({
+	text: "How many cuts are there per bundle?",
+	top: 20,
+	left: 20,
+	right: 20
+});
+
+var bundleCutsInput = Ti.UI.createTextField({
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	hintText: "Enter a number",
+	top: 5,
+	left: bundleCuts.left,
+	editable: false,
+	width: 250
+});
+
+var bundleSub = Ti.UI.createLabel({
+	text: "Are there any subs? Click for yes or no.",
+	top: bundleCuts.top,
+	left: bundleCuts.left
+});
+
+var bundleSubButton = Ti.UI.createButton({
+	top: 10,
+	style: Ti.UI.iPhone.SystemButtonStyle.BORDERED,
+	left: bundleCuts.left,
+	width: 50,
+	height: 30,
+	title: "No",
+	borderColor: "blue"
+});
+
+var clickThirtiesButton = function(){
+	if(thirtiesButton.title === "No"){
+		thirtiesButton.title = "Yes";
+	}else{
+		thirtiesButton.title = "No";
+	}
+};
+
+var clickSubButton = function(){
+	if(bundleSubButton.title === "No"){
+		bundleSubButton.title = "Yes";
+	}else{
+		bundleSubButton.title = "No";
+	}
+};
+
+thirtiesButton.addEventListener("click", function(){
+	clickThirtiesButton();
+	if(thirtiesButton.title === "No"){
+		bundleCutsInput.editable = true;
+	}
+	if(thirtiesButton.title === "Yes"){
+		bundleCutsInput.editable = false;
+	}
+});
+
+bundleSubButton.addEventListener("click", function(){
+	clickSubButton();
+});
+
+var calculateBtn = Ti.UI.createButton({
+	top: 20,
+	style: Ti.UI.iPhone.SystemButtonStyle.BORDERED,
+	left: bundleCuts.left,
+	width: 150,
+	height: 30,
+	bottom: 20,
+	title: "Calculate Merge",
+	borderColor: "blue",
+	backgroundColor: "#f5f5ff"
+});
+var calculateCheck = function(){
+	var trueFalse;
+	var bundleP = parseInt(bundlePiecesInput.value);
+	var dropsR = parseInt(dropsRunInput.value);
+	var barsD = parseInt(barsDropInput.value);
+	var barsH = parseInt(barsHeatInput.value);
+	var bundleC = parseInt(bundleCutsInput.value);
+	if(bundleP === parseInt(bundleP, 10)){
+		alert("Please enter a positive number in the entry fields");
+		console.log(bundleP, dropsR, barsD, barsH, bundleC);
+	}else{
+		navWin.openWindow(outputWin);
+	}
+};
+var calculateFctn = function(){
+	
+	if(thirtiesButton.title === "Yes"){
+		var thirtiesBundleCuts = 3;
+	    var thirtiesBedCuts = 8;
+	    //How many bars are in a full sub
+	    var singleSub = bundlePiecesInput.value / thirtiesBundleCuts;
+	    //How many bars are in each sub left in the heat
+	    var singleSubRemainder = barsHeatInput.value * barsDropInput.value;
+	    //How many bars need to be merged per sub
+	    var singleSubMergeNumber = singleSub - singleSubRemainder;
+	    
+	    var zeroSubsReg = bundlePiecesInput.value - singleSubRemainder * thirtiesBundleCuts;
+	    var zeroSubsLast = singleSubMergeNumber * 2 + singleSub;
+	    var oneSub = singleSubMergeNumber * 2;
+	    var twoSubs = singleSub * 2 + singleSubMergeNumber;
+	    
+	    outputLabel.text = "0 subs = \n" + zeroSubsReg + " first two bundles.\n" + zeroSubsLast + " third bundle.\n" + "1 sub = \n" + oneSub + " first bundle.\n" + zeroSubsReg + " last two bundles.\n" + "2 subs = \n" + singleSubMergeNumber + " for the first bundle. \n" + zeroSubsReg + " for the second and third bundles.\n" + twoSubs + " for the fourth bundle.";
+	    
+		}else{
+		var dropAdd = dropsRunInput.value - barsHeatInput.value;
+	
+		if(bundleSubButton.title === "Yes"){
+			var singleSubSecond = bundlePiecesInput.value / bundleCutsInput.value;
+			var singleSubRemainderSecond = barsHeatInput.value * dropsRunInput.value;
+			var singleSubMergeNumberSecond = singleSubSecond - singleSubRemainderSecond;
+			
+			var zeroSubsReg = bundlePiecesInput.value - singleSubRemainderSecond * bundleCutsInput.value;
+			var zeroSubsLast = singleSubMergeNumberSecond + singleSubSecond;
+			
+			outputLabel.text = "0 subs = \n" + zeroSubsReg + " for the first bundle.\n" + zeroSubsLast + " for the second bundle.\n" + "1 sub = \n" + singleSubMergeNumberSecond + " for the first bundle.\n" + zeroSubsReg + " for the second bundle.";
+			
+		}else{
+			mergeNumber = (dropAdd * barsDropInput.value) * bundleCutsInput.value;
+			outputLabel.text = "Add " + mergeNumber + " bars for the merge";
+		}
+	}
+	calculateCheck();
+	//navWin.openWindow(outputWin);
+};
+
+calculateBtn.addEventListener("click", function(){
+	calculateFctn();
+});
+
+var backButton = Ti.UI.createButton({
+	title: "Back"
+});
+
+calcWin.leftNavButton = backButton;
+
+var exitDialog = Ti.UI.createOptionDialog({
+	cancel: 1,
+	options: ['Yes', 'No'],
+	selectedIndex: 1,
+	destructive: 0,
+	title: 'Exit form?'
+});
+
+backButton.addEventListener("click", function(){
+	exitDialog.show();
+});
+
+exitDialog.addEventListener("click", function(e){
+	if(e.index === 0){
+		bundlePiecesInput.value = "";
+		dropsRunInput.value = "";
+		barsDropInput.value = "";
+		barsHeatInput.value = "";
+		bundleCutsInput.value = "";
+		calcWin.close();
+	};
+});
+
+outputWin.add(outputLabel);
+calcContainer.add(instructionHeader, bundlePieces, bundlePiecesInput, dropsInRun, dropsRunInput, barsPerDrop, barsDropInput, barsInHeat, barsHeatInput, thirtiesLabel, thirtiesButton, bundleCuts, bundleCutsInput, bundleSub, bundleSubButton, calculateBtn);
+calcWin.add(calcContainer);
+exports.calcCall = calcWin;

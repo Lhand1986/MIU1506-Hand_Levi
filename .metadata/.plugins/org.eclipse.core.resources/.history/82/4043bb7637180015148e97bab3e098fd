@@ -1,0 +1,68 @@
+/*
+ *Author: Levi Hand
+ *Gerdau Rebar Mill, Rancho Cucamonga, CA
+ *
+ *Creating a program to calculate a merge between
+ *two separate heats. This program should be able
+ *to account for different bundle size, subs,
+ *and possible rerolls. The calculation will dictate
+ *how many bars will need to be merged from one
+ *heat to the next.
+ */
+
+
+var bundlePieces = prompt("How many pieces are in each bundle?");
+var dropsInRun = prompt("How many drops are in each run?");
+var barsPerDrop = prompt("How many bars are in each drop?");
+var dropsLeftInHeat = prompt("How many drops are left in the current heat?");
+var dropAdd;
+var mergeNumber;
+
+var thirties = confirm("Are you merging 30 footers?\nCancel for no.");
+
+if (thirties === true) {
+    var thirtiesBundleCuts = 3;
+    var thirtiesBedCuts = 8;
+    //How many bars are in a full sub
+    var singleSub = bundlePieces / thirtiesBundleCuts;
+    //How many bars are in each sub left in the heat
+    var singleSubRemainder = dropsLeftInHeat * barsPerDrop;
+    //How many bars need to be merged per sub
+    var singleSubMergeNumber = singleSub - singleSubRemainder;
+
+    
+    var zeroSubsReg = bundlePieces - singleSubRemainder * thirtiesBundleCuts;
+    var zeroSubsLast = singleSubMergeNumber * 2 + singleSub;
+    var oneSub = singleSubMergeNumber * 2;
+    var twoSubs = singleSub * 2 + singleSubMergeNumber;
+    
+
+    alert("0 subs = \n" + zeroSubsReg + " first two bundles.\n" + zeroSubsLast + " third bundle.\n" + "1 sub = \n" + oneSub + " first bundle.\n" + zeroSubsReg + " last two bundles.\n" + "2 subs = \n" + singleSubMergeNumber + " for the first bundle. \n" + zeroSubsReg + " for the second and third bundles.\n" + twoSubs + " for the fourth bundle.");   
+    
+    
+}else{
+    var cutsPerBundle = prompt("How many cuts are there per bundle?");
+    dropAdd = dropsInRun - dropsLeftInHeat;
+
+    console.log("dropAdd = " + dropAdd);
+    //Math to figure out a standard merge
+    //How many drops need to be merged multiplied by how many bars are in each drop, multiplied by how many cuts make a full bundle
+
+
+    var subsTrueFalse = confirm("Is there a sub in this run?");
+    if (subsTrueFalse === true) {
+        //How many pieces are in a full sub
+        var singleSubSecond = bundlePieces / cutsPerBundle;
+        var singleSubRemainderSecond = dropsLeftInHeat * barsPerDrop;
+        var singleSubMergeNumberSecond = singleSubSecond - singleSubRemainderSecond;
+        
+        var zeroSubsReg = bundlePieces - singleSubRemainderSecond * cutsPerBundle;
+        var zeroSubsLast = singleSubMergeNumberSecond + singleSubSecond;
+        
+        alert("0 subs = \n" + zeroSubsReg + " for the first bundle.\n" + zeroSubsLast + " for the second bundle.\n" + "1 sub = \n" + singleSubMergeNumberSecond + " for the first bundle.\n" + zeroSubsReg + " for the second bundle.");
+        
+    }else{
+        mergeNumber = (dropAdd * barsPerDrop) * cutsPerBundle;
+        alert("Add " + mergeNumber + " bars for the merge");
+    }
+}

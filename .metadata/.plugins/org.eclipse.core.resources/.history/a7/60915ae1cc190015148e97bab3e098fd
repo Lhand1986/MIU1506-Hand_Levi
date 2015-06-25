@@ -1,0 +1,18 @@
+var splashWin = Ti.UI.createWindow({
+	backgroundColor: "#fffff0"
+});
+
+var startBtn = Ti.UI.createButton({
+	style: Ti.UI.iPhone.SystemButtonStyle.BORDERED,
+	title: "Start program",
+	borderColor: "blue",
+	backgroundColor: "#bbddbb"
+});
+
+startBtn.addEventListener("click", function(){
+	navWin.openWindow(loadLaunch.launchCall);
+});
+
+splashWin.add(startBtn);
+
+exports.splashCall = splashWin;

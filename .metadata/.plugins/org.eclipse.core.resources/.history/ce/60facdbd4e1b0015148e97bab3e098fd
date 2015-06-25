@@ -1,0 +1,13 @@
+var startBtn = Ti.UI.createButton({
+	style: Ti.UI.iPhone.SystemButtonStyle.BORDERED,
+	title: "Start program",
+	borderColor: "blue",
+	backgroundColor: "#bbddbb",
+	width: 150
+});
+
+startBtn.addEventListener("click", function(){
+	navWin.openWindow(loadLaunch.launchCall);
+});
+
+mainWin.add(startBtn);

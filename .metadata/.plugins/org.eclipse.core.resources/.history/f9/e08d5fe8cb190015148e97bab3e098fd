@@ -1,0 +1,24 @@
+var launchWin = Ti.UI.createWindow({
+	backgroundColor: "#fffff0",
+	title: "Launch"
+});
+
+var calcRow = Ti.UI.createTableViewRow({
+	title: "Merge Calculator",
+	hasChild: true
+});
+
+var aboutRow = Ti.UI.createTableViewRow({
+	title: "About this program",
+	hasChild: true
+});
+
+var launchTable = Ti.UI.createTableView({
+	//Set styling of table view to grouped
+	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
+	data: [calcRow, aboutRow]
+});
+
+launchWin.add(launchTable);
+
+exports.launchCall = launchWin;

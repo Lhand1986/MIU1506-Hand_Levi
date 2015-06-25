@@ -1,0 +1,123 @@
+//Create window for calculator
+var calcWindow = Ti.UI.createWindow({
+	backgroundColor: "#808080"
+});
+
+//Create a scroll view so the user can scroll through the information on screen
+var calcContainer = Ti.UI.createScrollView({
+	top: 0,
+	showVerticalScrollIndicator: true,
+	backgroundColor: "#808080",
+	layout: "vertical"
+});
+
+//Create a label for the instructions at the top of the page
+var instructionHeader = Ti.UI.createLabel({
+	text: "Placeholder",
+	top: 15,
+	left: 15,
+	font: {fontSize: 14, fontFamily: "Times New Roman"},
+	color: "white"
+});
+
+//Create a label for the bundle pieces question
+var bundlePieces = Ti.UI.createLabel({
+	text: "How many pieces are in each bundle?",
+	top: 20,
+	left: 20
+});
+
+//Create input field for the bundle pieces
+var bundlePiecesInput = Ti.UI.createTextField({
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	hintText: "Enter a number",
+	top: 5,
+	left: bundlePieces.left,
+	width: 250
+});
+
+//Create a label for the drops question field
+var dropsInRun = Ti.UI.createLabel({
+	text: "How many drops are in each run?",
+	top: bundlePieces.top,
+	left: bundlePieces.left
+});
+
+//Create input field for the drops
+var dropsRunInput = Ti.UI.createTextField({
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	hintText: "Enter a number",
+	top: 5,
+	left: dropsInRun.left,
+	width: 250
+});
+
+//Create a label for the bars per drop question field
+var barsPerDrop = Ti.UI.createLabel({
+	text: "How many bars are in each drop?",
+	top: dropsInRun.top,
+	left: dropsInRun.left
+});
+
+//Create input field for the bars
+var barsDropInput = Ti.UI.createTextField({
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	hintText: "Enter a number",
+	top: 5,
+	left: barsPerDrop.left,
+	width: 250
+});
+
+//Create a label for the drops in heat question field
+var barsInHeat = Ti.UI.createLabel({
+	text: "How many bars are left in the current heat?",
+	top: barsPerDrop.top,
+	left: barsPerDrop.left
+});
+
+//Create input field for the heat
+var barsHeatInput = Ti.UI.createTextField({
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	hintText: "Enter a number",
+	top: 5,
+	left: barsInHeat.left,
+	width: 250
+});
+
+//Create a label for the 30 foot bar toggle
+var thirtiesLabel = Ti.UI.createLabel({
+	text: "Toggle switch on if you are running 30 foot bar, toggle off if you are not.",
+	top: barsInHeat.top,
+	left: barsInHeat.left
+});
+
+var thirtiesTrueFalse = Ti.UI.createLabel({
+	text: "False",
+	top: 5,
+	left: thirtiesLabel.left
+});
+
+//Create a switch to select for 30 foot bar
+var thirtiesButton = Ti.UI.createButton({
+	top: 10,
+	style: Ti.UI.iPhone.SystemButtonStyle.BORDERED,
+	left: thirtiesLabel.left + 15,
+	width: 100,
+	height: 50,
+	title: "Select",
+});
+
+var clickButton = function(){
+	if(thirtiesTrueFalse === "False"){
+		thirtiesTrueFalse.text = "True";
+	}else{
+		thirtiesTrueFalse.text === "False";
+	}
+};
+
+thirtiesButton.addEventListener("click", function(){
+	clickButton();
+});
+
+calcContainer.add(instructionHeader, bundlePieces, bundlePiecesInput, dropsInRun, dropsRunInput, barsPerDrop, barsDropInput, barsInHeat, barsHeatInput, thirtiesLabel, thirtiesTrueFalse, thirtiesButton);
+mainWin.add(calcContainer);

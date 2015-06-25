@@ -1,0 +1,7 @@
+var aboutWin = Ti.UI.createWindow({
+	backgroundColor: "fffff0"
+});
+
+
+
+exports.aboutCall = aboutWin;

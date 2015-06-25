@@ -1,0 +1,17 @@
+//Create a button for the splash page
+var startBtn = Ti.UI.createButton({
+	style: Ti.UI.iPhone.SystemButtonStyle.BORDERED,
+	title: "Start program",
+	borderColor: "blue",
+	backgroundColor: "#f5f5ff",
+	width: 150,
+	height: 75
+});
+
+//Add an event listener to the start button to load the launch platform
+startBtn.addEventListener("click", function(){
+	navWin.openWindow(loadLaunch.launchCall);
+});
+
+//Add the start button to the main window
+mainWin.add(startBtn);
